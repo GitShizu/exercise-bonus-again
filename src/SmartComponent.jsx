@@ -1,11 +1,17 @@
-export default ({ id, label, value, mode, options, inputValues, updateValues, objIndex }) => {
+export default ({ id, label, value, mode, options, updateValues }) => {
+
+    const inputProps = {
+        type: mode.substring(6),
+        onChange: e => updateValues(e.target.value),
+        [mode.includes('checkbox') ? 'value' : 'checked']: { value }
+    }
+
     return (
         <label>
             <h3>{label}</h3>
-            {mode.startsWith('input') && !mode.includes('radio') && !mode.includes('checkbox') &&
-                <input type={mode.substring(6)}
-                    onChange={e => updateValues(e.target.value)}
-                    value={inputValues[objIndex]}
+            {mode.startsWith('input') && !mode.includes('radio') &&
+                <input
+                    {...inputProps}
                 >
                 </input>}
             {mode.includes('radio') &&
@@ -17,7 +23,8 @@ export default ({ id, label, value, mode, options, inputValues, updateValues, ob
                                 <input
                                     type={mode.substring(6)}
                                     name={id}
-                                    onChange={e => updateValues(e.target.checked && option)}
+                                    checked={value === option}
+                                    onChange={e => updateValues(e.target.value)}
                                 ></input>
                             </label>
                         )
@@ -27,22 +34,22 @@ export default ({ id, label, value, mode, options, inputValues, updateValues, ob
             }
             {mode.includes('select') &&
                 <select
-                    value={inputValues[objIndex]} 
+                    value={value}
                     onChange={e => updateValues(e.target.value)}>
                     {options.map((option, i) => {
                         return (
-                            <option key={`clr${i}`}>
+                            <option value={option} key={`clr${i}`}>
                                 {option}
                             </option>
                         )
                     })}
                 </select>}
-            {mode.includes('checkbox') &&
+            {/* {mode.includes('checkbox') &&
                 <input type={mode.substring(6)}
                     onChange={e => updateValues(e.target.checked)}
-                    checked={inputValues[objIndex]}
+                    checked={value}
                 >
-                </input>}
+                </input>} */}
         </label>
     )
 }

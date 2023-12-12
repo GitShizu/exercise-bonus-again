@@ -31,7 +31,7 @@ function App() {
     }, {
       id: "fav-color",
       label: "Favourite Color",
-      value: "",
+      value: "Red",
       mode: "select",
       options: ['Red', 'Green', 'Blue']
     }, {
@@ -50,13 +50,13 @@ function App() {
           const [inputValues, setInputValues] = useState(formData.map(() => ''))
           return (
             <CustomFormElement {...dataObj}
-              inputValues = {inputValues}
+              value = {inputValues[objIndex]}
               updateValues={(newValue) => {
                 const newInputValues = [...inputValues]
                 newInputValues[objIndex] = newValue
                 setInputValues(newInputValues)
               }}
-              objIndex = {objIndex}
+              
               key={`${dataObj.id}_${objIndex}`}
             />
           )
@@ -71,13 +71,12 @@ function App() {
           const [inputValues, setInputValues] = useState(formData.map(() => ''))
           return (
             <SmartComponent {...dataObj}
-              inputValues = {inputValues}
+              value = {inputValues[objIndex]}
               updateValues={(newValue) => {
                 const newInputValues = [...inputValues]
                 newInputValues[objIndex] = newValue
                 setInputValues(newInputValues)
               }}
-              objIndex = {objIndex}
               key={`${dataObj.id}_${objIndex}`}
             />
           )

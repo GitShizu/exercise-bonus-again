@@ -6,7 +6,7 @@ export default ({ id, label, value, mode, options, inputValues, updateValues, ob
                     <h3>{label}</h3>
                     <input
                         type="text"
-                        value={inputValues[objIndex]}
+                        value={value}
                         onChange={e => updateValues(e.target.value)}
                     />
                 </label>
@@ -17,7 +17,7 @@ export default ({ id, label, value, mode, options, inputValues, updateValues, ob
                     <h3>{label}</h3>
                     <input
                         type="email"
-                        value={inputValues[objIndex]}
+                        value={value}
                         onChange={e => updateValues(e.target.value)}
                     />
                 </label>
@@ -28,7 +28,7 @@ export default ({ id, label, value, mode, options, inputValues, updateValues, ob
                     <h3>{label}</h3>
                     <input
                         type="password"
-                        value={inputValues[objIndex]}
+                        value={value}
                         onChange={e => updateValues(e.target.value)}
                     />
                 </label>
@@ -59,7 +59,7 @@ export default ({ id, label, value, mode, options, inputValues, updateValues, ob
                         defaultValue={options[0]}>
                         {options.map((option, i) => {
                             return (
-                                <option key={`clr${i}`}>
+                                <option value = {option} key={`clr${i}`}>
                                     {option}
                                 </option>
                             )
@@ -74,7 +74,7 @@ export default ({ id, label, value, mode, options, inputValues, updateValues, ob
                     <h3>{label}</h3>
                     <input type="checkbox"
                         onChange={e => updateValues(e.target.checked)}
-                        checked={inputValues[objIndex]} />
+                        checked={value} />
                 </label>
             )
     }
